@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -31,31 +33,22 @@ const Login = () => {
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-          // Converting boolean to string as specified in your API params
+          // Converting boolean to string to match the API's expected "text" type
           remember_me: formData.remember_me ? "true" : "false" 
         }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      // Check for success status codes (200 or 201)
+      if (response.status === 200 || response.status === 201) {
         console.log('Login Successful:', data);
         
-        // As requested: Using OTP from API response if it exists
-        // This is commonly used if the user needs to verify their account before proceeding
-        if (data.otp) {
-          console.log('OTP received from response:', data.otp);
-          alert(`Login successful! Your OTP for verification is: ${data.otp}`);
-          // Redirect to Verify OTP page here, e.g., navigate('/verify-otp', { state: { email: formData.email } })
-        } else if (data.token) {
-           // Standard JWT token login handling
-           localStorage.setItem('authToken', data.token);
-           alert('Login successful!');
-           // Redirect to dashboard here
-        } else {
-           alert('Login successful!');
-        }
+        // Optional: Save token to localStorage here if your API returns one
+        // localStorage.setItem('token', data.token);
 
+        // Redirect to the home page
+        navigate('/'); 
       } else {
         console.error('Login Failed:', data);
         alert(data.message || 'Invalid email or password. Please try again.');
@@ -80,7 +73,7 @@ const Login = () => {
             Welcome <span className="text-[#71AC16]">Back</span>
           </h1>
           <p className="text-zinc-400 text-sm md:text-base">
-            Sign in to continue your journey.
+            Sign in to access your account.
           </p>
         </div>
 
@@ -99,21 +92,21 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               className="w-full bg-black border border-zinc-800 rounded-2xl px-5 py-4 text-white placeholder-zinc-600 focus:outline-none focus:border-[#71AC16] focus:ring-1 focus:ring-[#71AC16] transition-all duration-300"
-              placeholder="name@example.com"
+              placeholder="user@gmail.com"
               required
             />
           </div>
 
           {/* Password Field */}
           <div>
-            <div className="flex justify-between items-center mb-2 ml-1">
+            <div className="flex justify-between items-center mb-2 ml-1 mr-1">
               <label className="block text-sm font-medium text-zinc-400" htmlFor="password">
                 Password
               </label>
-              {/* Forgot Password Link */}
-              <a href="/forgot-password" className="text-sm text-[#71AC16] hover:text-white transition-colors duration-300">
+              {/* Optional Forgot Password Link */}
+              <Link to="/forgot-password" className="text-xs text-[#71AC16] hover:text-white transition-colors duration-300">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
             <input
               type="password"
@@ -154,10 +147,10 @@ const Login = () => {
           {/* Register Redirection Link */}
           <div className="text-center mt-6">
             <p className="text-zinc-400 text-sm">
-              Don't have an account?{' '}
-              <a href="/register" className="text-[#71AC16] hover:text-white font-semibold transition-colors duration-300">
-                Sign Up Now
-              </a>
+              Don't have an account yet?{' '}
+              <Link to={"/register"} className="text-[#71AC16] hover:text-white font-semibold transition-colors duration-300">
+                Register Here
+              </Link>
             </p>
           </div>
 

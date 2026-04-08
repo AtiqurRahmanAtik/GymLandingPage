@@ -6,6 +6,8 @@ import Register from './Pages/Register'
 import Login from './Pages/Login'
 import Root from './Route/Root'
 import Home from './Pages/Home'
+import VerifyOTP from './Pages/VerifyOTP'
+import ResendOTP from './Pages/ResendOTP'
 
 function App() {
  
@@ -20,6 +22,9 @@ function App() {
   <Route path='/' element={<Home/>}></Route>
   <Route path='/register' element={<Register/>}></Route>
   <Route path='/login' element={<Login/>}></Route>
+
+  <Route path='/verify-otp' element={<VerifyOTP />} />
+          <Route path='/resend-otp' element={<ResendOTP />} />
 
   </Route>
 

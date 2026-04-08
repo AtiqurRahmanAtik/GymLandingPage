@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const Register = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -39,10 +40,14 @@ const Register = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
+      // Check if status is 200 or 201
+      if (response.status === 200 || response.status === 201) {
         console.log('Registration Successful:', data);
         alert('Account created successfully!');
-        // You can add logic here to redirect the user or clear the form
+        
+        // Redirect the user to the OTP verification page
+        // Passing the email in state so the OTP page knows who is verifying
+        navigate('/verify-otp', { state: { email: formData.email } });
       } else {
         console.error('Registration Failed:', data);
         alert(data.message || 'Registration failed. Please check your information.');
