@@ -12,7 +12,7 @@ const Root = () => {
         <header>
             {/* <NavigationBar/> */}
 
-            <Header/>
+            {/* <Header/> */}
         </header>
            
            <main className='container mx-auto my-7'>

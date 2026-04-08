@@ -3,6 +3,7 @@ import NewsletterSubscribe from '../Components/NewsletterSubscribe/NewsletterSub
 import Testimonials from '../Components/Testimonials/Testimonials';
 import TrainingSection from '../Components/TrainingSection/TrainingSection';
 import ProductsSection from '../Components/ProductsSection/ProductsSection';
+import Header from '../Components/Header/Header';
 
 const Home = () => {
 
@@ -10,7 +11,7 @@ const Home = () => {
     return (
         <>
            
-
+            <Header/>
             <ProductsSection/>
 
             <TrainingSection/>

@@ -4,10 +4,11 @@ import React from 'react';
 import heroImage from '../../assets/WWW.png';
 import shapeSubtract from '../../assets/Subtract.svg';
 import bgEllipse from '../../assets/Ellipse3.png';
-import dotsPattern from '../../assets/paper-plane.png';
+
 import shapeBlack from '../../assets/Rectangle26.png';
 import btnGreenBg from '../../assets/Rectangle30.png';
 import shapeGreenLeft from '../../assets/Vector1.png';
+import { Link } from 'react-router';
 
 const Header = () => {
   // Custom styles for the specialized text effects
@@ -90,7 +91,7 @@ const Header = () => {
           {/* Register Button */}
           <button className="relative px-8 py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group">
             <img src={btnGreenBg} alt="button background" className="absolute inset-0 w-full h-full object-cover z-0" />
-            <span className="relative z-10">REGISTER</span>
+            <Link to={"/register"} className="relative z-10">REGISTER</Link>
           </button>
         </nav>
 
