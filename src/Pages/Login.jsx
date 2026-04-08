@@ -44,8 +44,14 @@ const Login = () => {
       if (response.status === 200 || response.status === 201) {
         console.log('Login Successful:', data);
         
-        // Optional: Save token to localStorage here if your API returns one
-        // localStorage.setItem('token', data.token);
+        // Save token to localStorage 
+        // (checks for data.token or data.access_token depending on your API structure)
+        const token = data.token || data.access_token;
+        if (token) {
+          localStorage.setItem('token', token);
+        }
+
+        console.log('Token ', token)
 
         // Redirect to the home page
         navigate('/'); 

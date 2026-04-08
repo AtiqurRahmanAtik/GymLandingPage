@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router';
 
 // Asset Imports
 import heroImage from '../../assets/WWW.png';
@@ -8,9 +9,46 @@ import bgEllipse from '../../assets/Ellipse3.png';
 import shapeBlack from '../../assets/Rectangle26.png';
 import btnGreenBg from '../../assets/Rectangle30.png';
 import shapeGreenLeft from '../../assets/Vector1.png';
-import { Link } from 'react-router';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check for token on component mount
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token');
+    
+    // Call the logout API if we have a token
+    if (token) {
+      try {
+        await fetch('https://apitest.thewarriors.team/api/logout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}` // Passing the Bearer token
+          }
+        });
+      } catch (error) {
+        console.error('Network Error during logout:', error);
+      }
+    }
+
+    // Remove the token from local storage
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    
+    // Redirect to login page
+    navigate('/');
+  };
+
   // Custom styles for the specialized text effects
   const outlineTextStyle = {
     WebkitTextStroke: '2px rgba(255, 255, 255, 0.8)',
@@ -25,7 +63,7 @@ const Header = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[1700px] mx-auto min-h-[1088px] bg-white overflow-hidden font-sans p-[20px]">
+    <div className="relative w-full max-w-[1700px] mx-auto min-h-[1088px] bg-white overflow-hidden font-sans px-[20px] pt-0 pb-10">
       
       {/* MAIN BACKGROUND LAYER USING PROVIDED ASSETS */}
       {/* Base Black Rectangle (Rectangle26) */}
@@ -88,11 +126,21 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Register Button */}
-          <button className="relative px-8 py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group">
-            <img src={btnGreenBg} alt="button background" className="absolute inset-0 w-full h-full object-cover z-0" />
-            <Link to={"/register"} className="relative z-10">REGISTER</Link>
-          </button>
+          {/* Auth Button (Conditional Register / Logout) */}
+          {isLoggedIn ? (
+            <button 
+              onClick={handleLogout}
+              className="relative px-8 py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group cursor-pointer"
+            >
+              <img src={btnGreenBg} alt="button background" className="absolute inset-0 w-full h-full object-cover z-0" />
+              <span className="relative z-10">LOGOUT</span>
+            </button>
+          ) : (
+            <button className="relative px-8 py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group">
+              <img src={btnGreenBg} alt="button background" className="absolute inset-0 w-full h-full object-cover z-0" />
+              <Link to={"/register"} className="relative z-10">REGISTER</Link>
+            </button>
+          )}
         </nav>
 
         {/* MAIN CONTENT AREA */}
