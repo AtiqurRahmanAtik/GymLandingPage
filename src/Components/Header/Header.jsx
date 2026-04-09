@@ -63,58 +63,59 @@ const Header = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[1700px] mx-auto min-h-[1088px] bg-white overflow-hidden font-sans px-[20px] pt-0 pb-10">
+    <div className="relative w-full max-w-[1700px] mx-auto min-h-[1088px] bg-white overflow-hidden font-sans px-4 md:px-[20px] pt-0 pb-10">
       
       {/* MAIN BACKGROUND LAYER USING PROVIDED ASSETS */}
       {/* Base Black Rectangle (Rectangle26) */}
       <img 
         src={shapeBlack} 
         alt="Base Dark Background" 
-        className="absolute top-[20px] left-[20px] right-[20px] bottom-[20px] w-[calc(100%-40px)] h-[calc(100%-40px)] object-cover rounded-[40px] lg:rounded-[60px] z-0"
+        className="absolute top-4 md:top-[20px] left-4 md:left-[20px] right-4 md:right-[20px] bottom-4 md:bottom-[20px] w-[calc(100%-32px)] md:w-[calc(100%-40px)] h-[calc(100%-32px)] md:h-[calc(100%-40px)] object-cover rounded-[30px] md:rounded-[40px] lg:rounded-[60px] z-0"
       />
       
       {/* Subtract SVG Overlay for the custom cutout shape */}
       <img 
         src={shapeSubtract} 
         alt="Main Background Cutout Shape" 
-        className="absolute -top-8 left-[20px] right-[20px] bottom-[20px] w-[calc(100%-40px)] h-[calc(100%-40px)] object-fill z-0 pointer-events-none"
+        className="absolute -top-8 left-4 md:left-[20px] right-4 md:right-[20px] bottom-4 md:bottom-[20px] w-[calc(100%-32px)] md:w-[calc(100%-40px)] h-[calc(100%-32px)] md:h-[calc(100%-40px)] object-fill z-0 pointer-events-none hidden md:block"
       />
 
       {/* Main Content Wrapper */}
-      <div className="relative z-10 w-full h-full rounded-[40px] lg:rounded-[60px] overflow-hidden">
+      <div className="relative z-10 w-full h-full rounded-[30px] md:rounded-[40px] lg:rounded-[60px] overflow-hidden">
         
         {/* HERO IMAGE */}
-        <div className="absolute right-0 top-2 h-full w-full lg:max-w-[65%] z-0">
+        <div className="absolute right-0 top-0 h-full w-full lg:max-w-[70%] z-0">
           <img 
             src={heroImage} 
             alt="Bodybuilders" 
-            className="object-cover w-full h-full opacity-90 object-right mix-blend-lighten"
+            className="object-cover w-full h-full opacity-90 object-top md:object-right mix-blend-lighten"
           />
           {/* Gradient fade to blend image into the background seamlessly */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent lg:via-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/80 lg:via-black/40 to-transparent"></div>
         </div>
 
         {/* TOP NAVIGATION BAR */}
-        <nav className="relative z-20 flex flex-wrap lg:flex-nowrap items-center justify-between px-6 lg:px-12 pt-8 w-full">
+        <nav className="relative z-20 flex flex-wrap lg:flex-nowrap items-center justify-between px-6 lg:px-12 pt-8 w-full gap-4 lg:gap-0">
           
           {/* Logo */}
-          <div className="relative flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 -ml-4 lg:-ml-8 -mt-4">
-            <img src={bgEllipse} alt="Logo Background" className="absolute w-full h-full object-contain" />
-            <div className="relative z-10 grid grid-cols-2 gap-1 w-6 h-6 text-white">
-              <span className="w-2.5 h-2.5 border-2 border-white rounded-sm"></span>
-              <span className="w-2.5 h-2.5 border-2 border-white rounded-sm"></span>
-              <span className="w-2.5 h-2.5 border-2 border-white rounded-sm"></span>
-              <span className="w-2.5 h-2.5 border-2 border-white rounded-sm"></span>
+          <div className="relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 -ml-2 lg:-ml-8 -mt-2 lg:-mt-4 bg-[#7ec124] rounded-full p-2 lg:p-0">
+            <img src={bgEllipse} alt="Logo Background" className="absolute w-full h-full object-contain hidden lg:block" />
+            <div className="relative z-10 grid grid-cols-2 gap-1 w-5 h-5 md:w-6 md:h-6 text-white">
+              <span className="w-2 h-2 md:w-2.5 md:h-2.5 border-2 border-white rounded-[3px]"></span>
+              <span className="w-2 h-2 md:w-2.5 md:h-2.5 border-2 border-white rounded-[3px]"></span>
+              <span className="w-2 h-2 md:w-2.5 md:h-2.5 border-2 border-white rounded-[3px]"></span>
+              <span className="w-2 h-2 md:w-2.5 md:h-2.5 border-2 border-white rounded-[3px]"></span>
             </div>
           </div>
 
-          {/* Center Nav & Search */}
-          <div className="hidden lg:flex items-center bg-black border border-gray-700 rounded-full px-8 py-3 w-[600px] justify-between shadow-lg">
-            <ul className="flex space-x-8 text-white text-sm font-medium tracking-wide">
+          {/* Center Nav & Search (Styled exactly like image) */}
+          <div className="hidden lg:flex items-center bg-black border border-white/20 rounded-full pl-8 pr-2 py-1.5 w-auto max-w-[600px] justify-between shadow-lg">
+            <ul className="flex items-center space-x-6 text-white text-sm font-medium tracking-wide">
               <li className="cursor-pointer hover:text-[#7ec124] transition">Home</li>
               <li className="cursor-pointer hover:text-[#7ec124] transition">Our gym location</li>
+              <li className="text-gray-600 font-light px-2">|</li>
             </ul>
-            <div className="flex items-center bg-[#2a2a2a] rounded-full px-4 py-2 w-48">
+            <div className="flex items-center bg-[#333333] rounded-full px-4 py-2 ml-2 w-40 xl:w-48">
               <input 
                 type="text" 
                 placeholder="Search" 
@@ -130,27 +131,27 @@ const Header = () => {
           {isLoggedIn ? (
             <button 
               onClick={handleLogout}
-              className="relative px-8 py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group cursor-pointer"
+              className="relative px-6 py-2.5 md:px-8 md:py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group cursor-pointer hover:scale-105 transition-transform"
             >
               <img src={btnGreenBg} alt="button background" className="absolute inset-0 w-full h-full object-cover z-0" />
-              <span className="relative z-10">LOGOUT</span>
+              <span className="relative z-10 text-sm md:text-base">LOGOUT</span>
             </button>
           ) : (
-            <button className="relative px-8 py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group">
+            <button className="relative px-6 py-2.5 md:px-8 md:py-3 font-bold text-white tracking-wider rounded-full overflow-hidden group hover:scale-105 transition-transform ml-auto lg:ml-0">
               <img src={btnGreenBg} alt="button background" className="absolute inset-0 w-full h-full object-cover z-0" />
-              <Link to={"/register"} className="relative z-10">REGISTER</Link>
+              <Link to={"/register"} className="relative z-10 text-sm md:text-base">REGISTER</Link>
             </button>
           )}
         </nav>
 
         {/* MAIN CONTENT AREA */}
-        <div className="relative z-10 flex flex-col lg:flex-row h-full mt-12 lg:mt-0 min-h-[850px]">
+        <div className="relative z-10 flex flex-col-reverse lg:flex-row h-full mt-8 lg:mt-0 min-h-[850px]">
           
           {/* LEFT SIDEBAR (Socials & Specialty) */}
-          <div className="w-full  flex flex-col justify-center px-8 lg:px-0 pt-12 lg:pt-0 pb-2">
+          <div className="w-full lg:w-[35%] flex flex-col justify-center px-6 lg:px-0 pt-8 lg:pt-0 pb-12 lg:pb-2">
             
             {/* Social Links */}
-            <div className=" ml-16 -mb-8 max-w-60">
+            <div className="lg:ml-16 mb-8 lg:-mb-4 max-w-xs z-20">
               <div className="flex items-center space-x-4 mb-4">
                 <span className="text-white text-sm font-semibold tracking-wide">Follow On:</span>
                 <div className="flex space-x-4 text-white">
@@ -160,19 +161,18 @@ const Header = () => {
                   <svg className="w-5 h-5 cursor-pointer hover:text-[#7ec124] transition" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>
                 </div>
               </div>
-              {/* <img src={dotsPattern} alt="dots pattern" className="w-32 opacity-40" /> */}
             </div>
 
             {/* Our Specialty Section */}
-            <div className="relative mb-52 w-full max-w-[350px]">
-              <img  src={shapeGreenLeft} alt="Green Background Shape" className="absolute inset-0 min-w-[348px] min-h-[543px] mt-20 h-full object-fill z-0 rounded-[40px] rounded-br-[80px]" />
+            <div className="relative w-full max-w-[350px] lg:mb-20">
+              <img src={shapeGreenLeft} alt="Green Background Shape" className="absolute inset-0 w-full h-full object-cover z-0 rounded-[30px] lg:rounded-l-none lg:rounded-r-[60px]" />
               
-              <div className="relative z-10 px-8 pt-40">
+              <div className="relative z-10 px-8 py-12 lg:pt-28 lg:pb-16">
                 <h3 className="text-white text-xl font-black mb-6 uppercase tracking-wider">Our Specialty</h3>
                 
                 <div className="space-y-4">
                   {/* Specialty Item 1 */}
-                  <div className="flex items-center space-x-4 border border-white/40 rounded-2xl p-3 cursor-pointer hover:bg-white/10 transition">
+                  <div className="flex items-center space-x-4 border border-white/40 rounded-2xl p-3 cursor-pointer hover:bg-white/20 transition backdrop-blur-sm">
                     <div className="w-12 h-12 rounded-lg border border-white/60 flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
@@ -180,7 +180,7 @@ const Header = () => {
                   </div>
 
                   {/* Specialty Item 2 */}
-                  <div className="flex items-center space-x-4 border border-white/40 rounded-2xl p-3 cursor-pointer hover:bg-white/10 transition">
+                  <div className="flex items-center space-x-4 border border-white/40 rounded-2xl p-3 cursor-pointer hover:bg-white/20 transition backdrop-blur-sm">
                     <div className="w-12 h-12 rounded-lg border border-white/60 flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
@@ -188,7 +188,7 @@ const Header = () => {
                   </div>
 
                   {/* Specialty Item 3 */}
-                  <div className="flex items-center space-x-4 border border-white/40 rounded-2xl p-3 cursor-pointer hover:bg-white/10 transition">
+                  <div className="flex items-center space-x-4 border border-white/40 rounded-2xl p-3 cursor-pointer hover:bg-white/20 transition backdrop-blur-sm">
                     <div className="w-12 h-12 rounded-lg border border-white/60 flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
                     </div>
@@ -201,26 +201,26 @@ const Header = () => {
           </div>
 
           {/* RIGHT HERO TYPOGRAPHY & BUTTONS */}
-          <div className="w-full lg:w-[65%] flex flex-col justify-end px-8 lg:px-0 pb-20 lg:pb-32 z-10">
+          <div className="w-full lg:w-[65%] flex flex-col justify-end px-6 lg:px-0 pb-16 lg:pb-32 z-10 lg:pr-12">
             
             {/* Massive Heading */}
-            <div className="flex flex-col -space-y-4 lg:-space-y-8 mb-8 z-20">
-              <h1 className="text-[60px] lg:text-[130px] font-black uppercase leading-none tracking-tighter w-full" style={outlineTextStyle}>
+            <div className="flex flex-col -space-y-3 lg:-space-y-6 mb-8 z-20">
+              <h1 className="text-[50px] sm:text-[75px] md:text-[90px] lg:text-[110px] xl:text-[130px] font-black uppercase leading-none tracking-tighter w-full" style={outlineTextStyle}>
                 POWER YOUR
               </h1>
-              <h1 className="text-[60px] lg:text-[130px] font-black uppercase leading-none tracking-tighter w-full" style={halfFilledTextStyle}>
-                POTENTIAL
+              <h1 className="text-[50px] sm:text-[75px] md:text-[90px] lg:text-[110px] xl:text-[130px] font-black uppercase leading-none tracking-tighter w-full" style={halfFilledTextStyle}>
+                POTENTIALE
               </h1>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center space-x-4 z-20">
-              <button className="flex items-center space-x-4 border border-white text-white rounded-full px-8 py-4 hover:bg-white hover:text-black transition duration-300">
+            <div className="flex flex-wrap items-center gap-4 z-20">
+              <button className="flex items-center justify-center space-x-4 border border-white text-white rounded-full px-6 py-3 md:px-8 md:py-4 hover:bg-white hover:text-black transition duration-300 w-full sm:w-auto">
                 <span className="text-sm font-semibold tracking-widest uppercase">Shop Now</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
               </button>
               
-              <button className="border border-white text-white rounded-2xl p-4 hover:bg-white hover:text-black transition duration-300">
+              <button className="flex items-center justify-center border border-white text-white rounded-2xl p-3 md:p-4 hover:bg-white hover:text-black transition duration-300 w-full sm:w-auto">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
               </button>
             </div>
